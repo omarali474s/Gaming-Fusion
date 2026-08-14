@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+:root {
+  --neon-cyan: #00f6ff;
+  --neon-pink: #ff2bd6;
+  --neon-purple: #8b5cf6;
+  --neon-green: #39ff14;
+}
+
+* {
+  scrollbar-color: var(--neon-cyan) #0a0c1a;
+  scrollbar-width: thin;
+}
+
+::selection {
+  background: var(--neon-pink);
+  color: #05060f;
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139, 92, 246, 0.25), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(0, 246, 255, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 5% 30%, rgba(255, 43, 214, 0.12), transparent);
+  background-attachment: fixed;
+}
+
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0, 246, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 246, 255, 0.08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black 40%, transparent 100%);
+}
+
+.font-display {
+  font-family: var(--font-orbitron), sans-serif;
+}
+
+.neon-text {
+  background: linear-gradient(
+    90deg,
+    var(--neon-cyan),
+    var(--neon-pink),
+    var(--neon-purple),
+    var(--neon-green),
+    var(--neon-cyan)
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: neon-shift 6s linear infinite;
+  filter: drop-shadow(0 0 18px rgba(0, 246, 255, 0.35));
+}
+
+@keyframes neon-shift {
+  to {
+    background-position: 300% center;
+  }
+}
+
+.neon-border {
+  position: relative;
+  border: 1px solid rgba(0, 246, 255, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 0 24px rgba(0, 246, 255, 0.08);
+}
+
+.neon-card {
+  background: linear-gradient(180deg, rgba(17, 20, 40, 0.85), rgba(8, 10, 22, 0.9));
+  backdrop-filter: blur(12px);
+}
+
+.glow-pulse {
+  animation: glow-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 12px rgba(0, 246, 255, 0.35), 0 0 2px rgba(0, 246, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(0, 246, 255, 0.65), 0 0 6px rgba(0, 246, 255, 0.9);
+  }
+}
+
+.btn-neon {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-neon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+  background-size: 220% 220%;
+  animation: neon-shift-bg 4s ease infinite;
+  opacity: 0.9;
+}
+
+@keyframes neon-shift-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.scan-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(0, 246, 255, 0.15), transparent);
+  transform: translateY(-100%);
+  animation: scan 2.5s linear infinite;
+}
+
+@keyframes scan {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.animate-indeterminate {
+  animation: progress-indeterminate 1.2s ease-in-out infinite;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-toast-in {
+  animation: toast-in 0.35s ease-out;
+}
